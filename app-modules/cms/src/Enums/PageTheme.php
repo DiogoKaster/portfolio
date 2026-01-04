@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Enums;
+namespace Kaster\Cms\Enums;
 
 enum PageTheme: string
 {
