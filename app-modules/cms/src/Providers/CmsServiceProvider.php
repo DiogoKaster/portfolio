@@ -36,6 +36,7 @@ class CmsServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../config.php', 'cms');
 
         $this->autoDiscoverComponents();
+        $this->registerConfigComponents();
     }
 
     protected function autoDiscoverComponents(): void
@@ -59,6 +60,17 @@ class CmsServiceProvider extends ServiceProvider
 
             if (class_exists($class) && is_subclass_of($class, ComponentContract::class) && !(new \ReflectionClass($class))->isAbstract()) {
                 $registry->register($class);
+            }
+        }
+    }
+
+    protected function registerConfigComponents(): void
+    {
+        $registry = $this->app->make(ComponentRegistry::class);
+
+        foreach (config('cms.components', []) as $componentClass) {
+            if (is_string($componentClass) && class_exists($componentClass)) {
+                $registry->register($componentClass);
             }
         }
     }

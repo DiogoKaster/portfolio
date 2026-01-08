@@ -18,7 +18,7 @@ class MakeCmsComponentCommand extends Command
 
         // Normalize name, e.g. Heroes/HeroBlock or HeroBlock
         $className = class_basename($name);
-        // If there's a subdirectory, get it. 
+        // If there's a subdirectory, get it.
         // We assume Input is like "Heroes/HeroBlock" -> Namespace Kaster\Cms\Filament\Components\Heroes
 
         $pathParts = explode('/', str_replace('\\', '/', $name));

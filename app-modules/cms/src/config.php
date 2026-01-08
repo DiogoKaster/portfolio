@@ -65,4 +65,16 @@ return [
      |--------------------------------------------------------------------------
      */
     'disable_robots_follow' => env('DISABLE_ROBOTS_FOLLOW', false),
+
+    /*
+     |--------------------------------------------------------------------------
+     | Components
+     |--------------------------------------------------------------------------
+     | Manually register component classes here. These are registered in
+     | addition to auto-discovered components from the CMS module.
+     |--------------------------------------------------------------------------
+     */
+    'components' => [
+        // \App\Cms\Components\MyCustomBlock::class,
+    ],
 ];

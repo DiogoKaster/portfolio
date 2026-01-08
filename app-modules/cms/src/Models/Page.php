@@ -65,7 +65,7 @@ class Page extends Model implements HasMedia
 
     protected static function booted(): void
     {
-//        static::saving(static function (Page $page) {
+        //        static::saving(static function (Page $page) {
 //            if ($page->isDirty('content')) {
 //                $page->searchable_content = $page->generateSearchableText();
 //            }
@@ -89,17 +89,17 @@ class Page extends Model implements HasMedia
 
     public function parent(): BelongsTo
     {
-        return $this->belongsTo(__CLASS__, 'parent_page_id');
+        return $this->belongsTo(__CLASS__, 'parent_id');
     }
 
     public function translationOrigin(): BelongsTo
     {
-        return $this->belongsTo(__CLASS__, 'translation_origin_model_id');
+        return $this->belongsTo(__CLASS__, 'translation_origin_id');
     }
 
     public function translations(): HasMany
     {
-        return $this->hasMany(__CLASS__, 'translation_origin_model_id');
+        return $this->hasMany(__CLASS__, 'translation_origin_id');
     }
 
     public function translationForLang(string $locale): Page
