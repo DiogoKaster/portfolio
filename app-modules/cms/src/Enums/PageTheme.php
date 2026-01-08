@@ -1,0 +1,18 @@
+<?php
+
+namespace Kaster\Cms\Enums;
+
+enum PageTheme: string
+{
+    case Default = 'dark';
+
+    case Metallic = 'metallic';
+
+    public function getPageBackground(): string
+    {
+        return match ($this) {
+            self::Default => 'bg-elevation-surface',
+            self::Metallic => 'bg-[#09090A]',
+        };
+    }
+}

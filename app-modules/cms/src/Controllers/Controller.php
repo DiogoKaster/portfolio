@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Kaster\Cms\Controllers;
 
 abstract class Controller
 {
