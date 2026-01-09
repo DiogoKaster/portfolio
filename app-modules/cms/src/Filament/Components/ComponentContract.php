@@ -2,6 +2,8 @@
 
 namespace Kaster\Cms\Filament\Components;
 
+use BackedEnum;
+
 interface ComponentContract
 {
     /**
@@ -11,7 +13,7 @@ interface ComponentContract
 
     public static function fieldName(): string;
 
-    public static function getGroup(): string;
+    public static function getGroup(): BackedEnum;
 
     /**
      * @param  array<string, mixed>  $data
