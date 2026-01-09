@@ -15,52 +15,13 @@
     <!-- Site Title -->
     <title>@yield("title", config("app.name"))</title>
     @vite(["resources/css/app.css", "resources/js/app.js"])
-    <script>
-        (function (w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({
-                'gtm.start': new Date().getTime(),
-                event: 'gtm.js',
-            });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s),
-                dl = l !== 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-KTVLGCHG');
-    </script>
-
-    <script>
-        (function (w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({
-                'gtm.start': new Date().getTime(),
-                event: 'gtm.js',
-            });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s),
-                dl = l !== 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-KTVLGCHG');
-    </script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Syne&display=swap" rel="stylesheet" />
     @stack('styles')
     @livewireStyles
 </head>
 <body>
-<noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KTVLGCHG" class="hidden h-0 w-0"></iframe>
-</noscript>
-<!-- Gradient Overlay Layer -->
-<div class="fixed inset-0 z-[9999] pointer-events-none bg-gradient-to-b from-brand-primary/3 to-brand-primary/0 mix-blend-normal"></div>
 
 {{ $navbar ?? "" }}
+
 <main>
     {{ $slot }}
 </main>
