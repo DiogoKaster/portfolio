@@ -28,7 +28,7 @@ class PageFactory extends Factory
             'title' => $title,
             'slug' => Str::slug($title),
             'lang' => 'pt_BR',
-            'status' => PageStatus::PUBLISHED,
+            'status' => PageStatus::Published,
             'content' => [],
             'seo_metadata' => [],
             'is_landing' => $this->faker->boolean(),

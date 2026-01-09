@@ -20,7 +20,7 @@ class MenuItemFactory extends Factory
             'label' => $this->faker->name,
             'order' => $this->faker->numberBetween(0, 30),
             'parent_id' => null,
-            'target' => MenuItemTarget::SELF->value,
+            'target' => MenuItemTarget::Self->value,
             'type' => 'page',
         ];
     }

@@ -117,7 +117,7 @@ class PageResource extends Resource
                 ->label(__('Status'))
                 ->placeholder(__('Select a status'))
                 ->options(PageStatus::class)
-                ->default(PageStatus::PUBLISHED)
+                ->default(PageStatus::Published)
                 ->required(),
             'theme' => Select::make('theme')
                 ->enum(PageTheme::class)
@@ -165,9 +165,9 @@ class PageResource extends Resource
             TextColumn::make('status')
                 ->badge()
                 ->colors([
-                    'success' => PageStatus::PUBLISHED,
-                    'warning' => PageStatus::DRAFT,
-                    'danger' => PageStatus::ARCHIVED,
+                    'success' => PageStatus::Published,
+                    'warning' => PageStatus::Draft,
+                    'danger' => PageStatus::Archived,
                 ])
                 ->label(__('Status')),
             TextColumn::make('published_at')

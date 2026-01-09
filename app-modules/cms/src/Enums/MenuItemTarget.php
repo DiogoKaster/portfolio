@@ -6,22 +6,22 @@ use Filament\Support\Contracts\HasLabel;
 
 enum MenuItemTarget: string implements HasLabel
 {
-    case SELF = 'self';
-    case BLANK = 'blank';
+    case Self = 'self';
+    case Blank = 'blank';
 
     public function getLabel(): string
     {
         return match ($this) {
-            self::SELF => __('Same window'),
-            self::BLANK => __('New window'),
+            self::Self => __('Same window'),
+            self::Blank => __('New window'),
         };
     }
 
     public function getHtmlProperty(): string
     {
         return match ($this) {
-            self::SELF => '_self',
-            self::BLANK => '_blank',
+            self::Self => '_self',
+            self::Blank => '_blank',
         };
     }
 }

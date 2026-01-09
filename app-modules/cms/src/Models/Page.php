@@ -156,7 +156,7 @@ class Page extends Model implements HasMedia
 
     public function isPublished(): bool
     {
-        return $this->status === PageStatus::PUBLISHED;
+        return $this->status === PageStatus::Published;
     }
 
     protected static function newFactory(): PageFactory
