@@ -3,6 +3,9 @@
 namespace Kaster\Cms\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+use Kaster\Cms\Enums\PageStatus;
+use Kaster\Cms\Enums\PageTheme;
 use Kaster\Cms\Models\Page;
 
 /**
@@ -19,8 +22,18 @@ class PageFactory extends Factory
      */
     public function definition(): array
     {
+        $title = $this->faker->sentence(4);
+
         return [
-            //
+            'title' => $title,
+            'slug' => Str::slug($title),
+            'lang' => 'pt_BR',
+            'status' => PageStatus::PUBLISHED,
+            'content' => [],
+            'seo_metadata' => [],
+            'is_landing' => $this->faker->boolean(),
+            'theme' => PageTheme::Default ,
+            'published_at' => now(),
         ];
     }
 }
