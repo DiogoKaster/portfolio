@@ -5,21 +5,17 @@ namespace Kaster\Cms\Filament\Components;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\Builder\Block;
 use Illuminate\Support\HtmlString;
-//use Webmozart\Assert\Assert;
+use Kaster\Cms\Services\ComponentRegistry;
 
 class FilamentComponentsService
 {
-    public function getFlexibleContentFieldsForModel(string $modelClassName): Builder
+    public function getFlexibleContentFieldsForModel(): Builder
     {
         $blocks = [];
 
-        $registry = app(\Kaster\Cms\Services\ComponentRegistry::class);
+        $registry = app(ComponentRegistry::class);
 
         foreach ($registry->all() as $componentClass) {
-            /** @var ComponentContract $componentClass */
-            // logic for disabled_for is removed as it was not present in the Enum implementation
-            // If needed, it should be added to ComponentContract
-
             $name = sprintf('[%s] %s', $componentClass::getGroup(), str($componentClass::fieldName())->title()->replace('-', ' '));
             $blocks[] =
                 Block::make($componentClass::fieldName())
@@ -28,7 +24,7 @@ class FilamentComponentsService
         }
 
         return Builder::make('content')
-            ->blockPickerColumns(2)
+            ->blockPickerColumns()
             ->blockPickerWidth('2xl')
             ->blocks($blocks)
             ->blockNumbers(false)

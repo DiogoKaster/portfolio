@@ -29,7 +29,6 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Kaster\Cms\Enums\PageStatus;
 use Kaster\Cms\Enums\PageTheme;
-use Kaster\Cms\Filament\CommonFields;
 use Kaster\Cms\Filament\Components\FilamentComponentsService;
 use Kaster\Cms\Filament\Resources\Pages\Pages\CreatePage;
 use Kaster\Cms\Filament\Resources\Pages\Pages\EditPage;
@@ -91,7 +90,7 @@ class PageResource extends Resource
                                     )
                                     ->required(),
                             ]),
-                        $filamentComponentService->getFlexibleContentFieldsForModel(Page::class),
+                        $filamentComponentService->getFlexibleContentFieldsForModel(),
                     ]),
                 View::make('cms::filament.preview-json') // Preview
                     ->columnSpanFull()
