@@ -13,7 +13,7 @@ interface ComponentContract
 
     public static function fieldName(): string;
 
-    public static function getGroup(): BackedEnum;
+    public static function getGroup(): string|BackedEnum;
 
     /**
      * @param  array<string, mixed>  $data
