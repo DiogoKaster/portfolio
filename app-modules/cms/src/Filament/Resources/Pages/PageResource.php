@@ -207,7 +207,7 @@ class PageResource extends Resource
     {
         $columns = [
             TextColumn::make('title')
-                ->label(__('filament.page_title'))
+                ->label(__('Title'))
                 ->color('primary')
                 ->url(
                     url: fn(Page $record): string => $record->url(),
@@ -223,7 +223,6 @@ class PageResource extends Resource
                 ])
                 ->label(__('Status')),
             TextColumn::make('published_at')
-                ->label(__('filament.published_at'))
                 ->sortable(),
         ];
 

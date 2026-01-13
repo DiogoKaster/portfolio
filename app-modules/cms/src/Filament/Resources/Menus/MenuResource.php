@@ -42,12 +42,11 @@ class MenuResource extends Resource
 
         $parametersTab = [
             TextInput::make('title')
-                ->label(__('filament.menu_title'))
+                ->label(__('Title'))
                 ->live(debounce: 500)
                 ->afterStateUpdated(fn(Set $set, ?string $state): mixed => $set('slug', Str::slug(strval($state))))
                 ->required(),
             TextInput::make('slug')
-                ->label(__('filament.menu_slug'))
                 ->required(),
         ];
 
@@ -62,8 +61,7 @@ class MenuResource extends Resource
     public static function table(Table $table): Table
     {
         $columns = [
-            TextColumn::make('title')
-                ->label(__('filament.menu_title')),
+            TextColumn::make('title'),
         ];
 
         return $table
