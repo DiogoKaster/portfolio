@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Models\User;
+use Kaster\Cms\Filament\Resources\Menus\RelationManagers\ItemsRelationManager;
 use Kaster\Cms\Models\Menu;
 use Kaster\Cms\Models\MenuItem;
 use Kaster\Cms\Models\Page;
@@ -19,6 +20,27 @@ return [
         'page' => Page::class,
         'menu' => Menu::class,
         'menu_item' => MenuItem::class,
+    ],
+
+    /*
+     |--------------------------------------------------------------------------
+     | Filament Navigation
+     |--------------------------------------------------------------------------
+     | Configure where resources appear in Filament's sidebar.
+     | Set 'group' to null for no grouping, or a string like 'CMS' or 'Content'.
+     */
+
+    'navigation' => [
+        'page' => [
+            'group' => null,
+            'icon' => 'heroicon-o-document-text',
+            'sort' => null,
+        ],
+        'menu' => [
+            'group' => null,
+            'icon' => 'heroicon-o-rectangle-stack',
+            'sort' => null,
+        ],
     ],
 
     /*

@@ -42,20 +42,22 @@ class PageResource extends Resource
 
     // protected static ?string $modelLabel = 'Page';
 
-    protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-document-text';
-
-
     protected static ?string $label = null;
 
-    //    public static function getLabel(): ?string
-//    {
-//        return __('filament.page');
-//    }
-//
-//    public static function getNavigationGroup(): ?string
-//    {
-//        return __('filament.pages');
-//    }
+    public static function getNavigationGroup(): ?string
+    {
+        return config('cms.navigation.page.group');
+    }
+
+    public static function getNavigationIcon(): string|\BackedEnum|null
+    {
+        return config('cms.navigation.page.icon', 'heroicon-o-document-text');
+    }
+
+    public static function getNavigationSort(): ?int
+    {
+        return config('cms.navigation.page.sort');
+    }
 
     public static function form(Schema $schema): Schema
     {
@@ -160,7 +162,7 @@ class PageResource extends Resource
 
                                             TextInput::make('meta_title')
                                                 ->label('Meta Title')
-                                                ->placeholder(fn ($get) => $get('../title'))
+                                                ->placeholder(fn($get) => $get('../title'))
                                                 ->maxLength(60)
                                                 ->columnSpanFull(),
 
@@ -175,11 +177,11 @@ class PageResource extends Resource
                                                 ->schema([
                                                     TextInput::make('og_title')
                                                         ->label('Social Title')
-                                                        ->placeholder(fn ($get) => $get('meta_title') ?: $get('../title')),
+                                                        ->placeholder(fn($get) => $get('meta_title') ?: $get('../title')),
 
                                                     Textarea::make('og_description')
                                                         ->label('Social Description')
-                                                        ->placeholder(fn ($get) => $get('meta_description'))
+                                                        ->placeholder(fn($get) => $get('meta_description'))
                                                         ->rows(2),
 
                                                     FileUpload::make('og_image')
