@@ -40,7 +40,8 @@ class LinkGroupResource extends Resource
         return $schema
             ->components([
                 Section::make(__('Link Group'))
-                    ->columns(2)
+                    ->columnSpanFull()
+                    ->columns()
                     ->schema([
                         TextInput::make('title')
                             ->label(__('Title'))
