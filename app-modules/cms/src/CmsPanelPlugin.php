@@ -5,7 +5,7 @@ namespace Kaster\Cms;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Filament\Support\Colors\Color;
-use Kaster\Cms\Filament\Resources\Menus\MenuResource;
+use Kaster\Cms\Filament\Resources\LinkGroups\LinkGroupResource;
 use Kaster\Cms\Filament\Resources\Pages\PageResource;
 
 class CmsPanelPlugin implements Plugin
@@ -19,7 +19,7 @@ class CmsPanelPlugin implements Plugin
     {
         $panel->resources([
             PageResource::class,
-            MenuResource::class
+            LinkGroupResource::class
         ])->colors([
             'primary' => Color::hex('#559700'),
             ...Color::all()

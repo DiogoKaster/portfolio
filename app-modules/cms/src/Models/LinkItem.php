@@ -9,53 +9,49 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Collection;
-use Kaster\Cms\Enums\MenuItemTarget;
-use Kaster\Cms\Enums\MenuItemType;
+use Kaster\Cms\Enums\LinkItemTarget;
 
 /**
  * @property int $id
- * @property int $menu_id
+ * @property int $link_group_id
  * @property int|null $parent_id
  * @property int|null $order
- * @property string|null $label
- * @property string|null $custom_url
- * @property MenuItemTarget $target
- * @property MenuItemType $type
- * @property-read Menu $menu
+ * @property string $label
+ * @property string|null $url
+ * @property LinkItemTarget $target
+ * @property-read LinkGroup $linkGroup
  * @property-read Model|null $model
- * @property-read MenuItem|null $parent
- * @property-read Collection<int, MenuItem> $children
+ * @property-read LinkItem|null $parent
+ * @property-read Collection<int, LinkItem> $children
  * @property-read bool $is_dropdown
  * @property-read bool $has_children
- * @property-read string|null $url
  */
-class MenuItem extends Model
+class LinkItem extends Model
 {
     use HasFactory;
 
+    protected $table = 'link_items';
+
     protected $casts = [
-        'target' => MenuItemTarget::class,
-        'type' => MenuItemType::class,
+        'target' => LinkItemTarget::class,
     ];
 
     protected $fillable = [
-        'menu_id',
+        'link_group_id',
         'parent_id',
         'order',
         'label',
-        'custom_url',
+        'url',
         'target',
-        'type',
     ];
 
     /**
-     * Whether this item acts as a dropdown (container for children without its own link).
-     * True if type is Dropdown OR if it has children (regardless of type).
+     * Whether this item acts as a dropdown (has child items).
      */
     protected function isDropdown(): Attribute
     {
         return Attribute::make(
-            get: fn(): bool => $this->type === MenuItemType::Dropdown || $this->children()->exists()
+            get: fn(): bool => $this->children()->exists()
         );
     }
 
@@ -70,30 +66,16 @@ class MenuItem extends Model
     }
 
     /**
-     * Get the resolved URL for this menu item.
+     * Optional linked model (e.g., Page) - when selected, auto-populates URL.
      */
-    protected function url(): Attribute
-    {
-        return Attribute::make(
-            get: function (): ?string {
-                return match ($this->type) {
-                    MenuItemType::Custom => $this->custom_url,
-                    MenuItemType::Resource => $this->model?->url(),
-                    MenuItemType::Dropdown => null,
-                    default => null,
-                };
-            }
-        );
-    }
-
     public function model(): MorphTo
     {
         return $this->morphTo();
     }
 
-    public function menu(): BelongsTo
+    public function linkGroup(): BelongsTo
     {
-        return $this->belongsTo(Menu::class);
+        return $this->belongsTo(LinkGroup::class);
     }
 
     public function parent(): BelongsTo
@@ -104,5 +86,10 @@ class MenuItem extends Model
     public function children(): HasMany
     {
         return $this->hasMany(__CLASS__, 'parent_id')->orderBy('order');
+    }
+
+    protected static function newFactory(): \Kaster\Cms\Database\Factories\LinkItemFactory
+    {
+        return \Kaster\Cms\Database\Factories\LinkItemFactory::new();
     }
 }

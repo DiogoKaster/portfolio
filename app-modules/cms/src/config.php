@@ -3,9 +3,8 @@
 declare(strict_types=1);
 
 use App\Models\User;
-use Kaster\Cms\Filament\Resources\Menus\RelationManagers\ItemsRelationManager;
-use Kaster\Cms\Models\Menu;
-use Kaster\Cms\Models\MenuItem;
+use Kaster\Cms\Models\LinkGroup;
+use Kaster\Cms\Models\LinkItem;
 use Kaster\Cms\Models\Page;
 
 return [
@@ -18,8 +17,8 @@ return [
     'models' => [
         'user' => User::class,
         'page' => Page::class,
-        'menu' => Menu::class,
-        'menu_item' => MenuItem::class,
+        'link_group' => LinkGroup::class,
+        'link_item' => LinkItem::class,
     ],
 
     /*
@@ -36,23 +35,20 @@ return [
             'icon' => 'heroicon-o-document-text',
             'sort' => null,
         ],
-        'menu' => [
+        'link_group' => [
             'group' => null,
-            'icon' => 'heroicon-o-rectangle-stack',
+            'icon' => 'heroicon-o-link',
             'sort' => null,
         ],
     ],
 
     /*
      |--------------------------------------------------------------------------
-     | Menu
+     | Link Groups
      |--------------------------------------------------------------------------
      */
 
-    'enable_menu_module' => true,
-    'menu' => [
-        'menu_items_relation_manager' => ItemsRelationManager::class,
-    ],
+    'enable_link_module' => true,
 
     /*
      |--------------------------------------------------------------------------
